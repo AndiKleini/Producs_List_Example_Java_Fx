@@ -4,6 +4,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class ProductListModel {
+
+    private ProductFormModel productModel;
+
+    public ProductListModel(ProductFormModel product) {
+        this.productModel = product;
+    }
+
     private ObservableList<ProductModel> products = FXCollections.observableArrayList();
 
     public ObservableList<ProductModel> getProducts() {

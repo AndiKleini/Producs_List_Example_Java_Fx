@@ -6,6 +6,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class ProductModel {
+
+    private Consumer<ProductModel> addProductHandler;
     private StringProperty name = new SimpleStringProperty();
     private IntegerProperty price = new SimpleIntegerProperty();
 
@@ -13,13 +15,6 @@ public class ProductModel {
         var newInstance = new ProductModel();
         newInstance.name.set(source.name.getValue());
         newInstance.price.set(source.price.getValue());
-        return newInstance;
-    }
-
-    public static ProductModel From(EnterProductModel source) {
-        var newInstance = new ProductModel();
-        newInstance.name.set(source.getName());
-        newInstance.price.set(source.getPrice());
         return newInstance;
     }
 
@@ -40,6 +35,10 @@ public class ProductModel {
         return price;
     }
 
+    public void addListenerForAddProduct(Consumer<ProductModel> listener) {
+        this.addProductHandler = listener;
+    }
+
     public void setPrice(int price) {
         this.price.set(price);
     }
@@ -50,5 +49,9 @@ public class ProductModel {
 
     public void priceDown() {
         this.price.setValue(this.price.getValue() - 1);
+    }
+
+    public void submit() {
+        this.addProductHandler.accept();
     }
 }

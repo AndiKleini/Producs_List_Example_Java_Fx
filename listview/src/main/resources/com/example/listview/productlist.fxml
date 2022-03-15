@@ -18,6 +18,7 @@
     <Label>Price</Label>
     <TextField fx:id="newProductPrice"/>
     <Button text="New" onAction="#addProduct"/>
+    <fx:include fx:id="productForm" source="productform.fxml"></fx:include>
     <ListView fx:id="products"/>
     <HBox style="-fx-alignment: Center">
         <children >

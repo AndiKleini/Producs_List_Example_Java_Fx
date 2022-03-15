@@ -12,28 +12,23 @@ import java.util.ResourceBundle;
 
 public class ProductListController implements Initializable {
 
-    private ProductListModel productsModel = new ProductListModel();
-    private ProductModel newProduct = new ProductModel();
+    private ProductListModel productsModel;
 
     @FXML
-    public TextField newProductName = new TextField();
-
-    @FXML
-    public TextField newProductPrice = new TextField();
+    private EnterProductController enterProductController;
 
     @FXML
     public ListView<ProductModel> products = new ListView<>();
+
+    public ProductListController(ProductListModel productListModel) {
+        this.productsModel = productListModel;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.products.setItems(this.productsModel.getProducts());
         this.products.setCellFactory(productModelListView -> new ProductItemListCell(p -> this.deleteProduct(p)));
-        this.newProductName.textProperty().bindBidirectional(this.newProduct.nameProperty());
-        this.newProductPrice.textProperty().bindBidirectional(this.newProduct.priceProperty(),  new NumberStringConverter());
-    }
-
-    public void addProduct(ActionEvent action) {
-        this.productsModel.addProduct(ProductModel.From(this.newProduct));
+        this.enterProductController.addListener(p -> this.productsModel.addProduct(ProductModel.From(p)));
     }
 
     private void deleteProduct(ProductModel model) {
