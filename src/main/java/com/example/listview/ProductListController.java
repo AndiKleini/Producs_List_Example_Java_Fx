@@ -18,7 +18,7 @@ public class ProductListController implements Initializable {
     private EnterProductController enterProductController;
 
     @FXML
-    public ListView<ProductModel> products = new ListView<>();
+    private ProductListingController productListingController;
 
     public ProductListController(ProductListModel productListModel) {
         this.productsModel = productListModel;
@@ -26,24 +26,7 @@ public class ProductListController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.products.setItems(this.productsModel.getProducts());
-        this.products.setCellFactory(productModelListView -> new ProductItemListCell(p -> this.deleteProduct(p)));
-        this.enterProductController.addListener(p -> this.productsModel.addProduct(ProductModel.From(p)));
-    }
-
-    private void deleteProduct(ProductModel model) {
-       this.productsModel.removeProduct(model);
-    }
-
-    public void clearProducts(ActionEvent actionEvent) {
-        this.productsModel.removeAll();
-    }
-
-    public void allPricesUp(ActionEvent actionEvent) {
-        this.productsModel.allPriceUp();
-    }
-
-    public void allPricesDown(ActionEvent actionEvent) {
-        this.productsModel.allPriceDown();
+        this.enterProductController.addListener(
+                p -> this.productsModel.addProduct(ProductModel.From(p)));
     }
 }

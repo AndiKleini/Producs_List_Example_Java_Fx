@@ -16,7 +16,9 @@ public class ControllerFactory {
             return new EnterProductController(this.enterProductModel);
         } else if (controllerClass == ProductListController.class) {
             return new ProductListController(this.productListModel);
-        } else {
+        } else if (controllerClass == ProductListingController.class) {
+            return new ProductListingController(this.productListModel);
+        }else {
             throw new Exception("Controller not supported " + controllerClass.getName());
         }
     }

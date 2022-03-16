@@ -9,13 +9,6 @@ public class ProductModel {
     private StringProperty name = new SimpleStringProperty();
     private IntegerProperty price = new SimpleIntegerProperty();
 
-    public static ProductModel From(ProductModel source) {
-        var newInstance = new ProductModel();
-        newInstance.name.set(source.name.getValue());
-        newInstance.price.set(source.price.getValue());
-        return newInstance;
-    }
-
     public static ProductModel From(EnterProductModel source) {
         var newInstance = new ProductModel();
         newInstance.name.set(source.getName());
