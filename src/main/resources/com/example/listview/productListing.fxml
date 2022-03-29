@@ -14,11 +14,13 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
     <ListView fx:id="products"/>
+    <Label fx:id="sum"></Label>
     <HBox style="-fx-alignment: Center">
         <children >
             <Button text="All Up" onAction="#allPricesUp" style="-fx-alignment: Center-Left"></Button>
             <Button text="All Down" onAction="#allPricesDown" style="-fx-alignment: Center"></Button>
             <Button text="Clear" onAction="#clearProducts" style="-fx-alignment: Center-Right"></Button>
+            <Button text="Sum" onAction="#sumProducts" style="-fx-alignment: Center-Right"></Button>
         </children>
     </HBox>
 </VBox>

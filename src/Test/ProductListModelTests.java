@@ -8,7 +8,7 @@ public class ProductListModelTests {
     @Test
     public void addProduct_storesNewProductInList() {
         var productToStore = new ProductModel();
-        var instanceUnderTest = new ProductListModel();
+        var instanceUnderTest = new ProductListModel(null);
 
         instanceUnderTest.addProduct(productToStore);
 
@@ -18,7 +18,7 @@ public class ProductListModelTests {
     @Test
     public void removeProduct_removesSpecifiedProductFromList() {
         var productToStore = new ProductModel();
-        var instanceUnderTest = new ProductListModel();
+        var instanceUnderTest = new ProductListModel(null);
         instanceUnderTest.addProduct(productToStore);
 
         instanceUnderTest.removeProduct(productToStore);

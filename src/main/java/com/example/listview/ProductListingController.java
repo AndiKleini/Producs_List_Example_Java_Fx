@@ -3,13 +3,18 @@ package com.example.listview;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.util.converter.NumberStringConverter;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ProductListingController implements Initializable {
     private ProductListModel productsModel;
+
+    @FXML
+    public Label sum;
 
     @FXML
     public ListView<ProductModel> products = new ListView<>();
@@ -23,6 +28,7 @@ public class ProductListingController implements Initializable {
         this.products.setItems(this.productsModel.getProducts());
         this.products.setCellFactory(
                 productModelListView -> new ProductItemListCell(p -> this.deleteProduct(p)));
+        this.sum.textProperty().bindBidirectional(this.productsModel.total, new NumberStringConverter());
     }
 
     private void deleteProduct(ProductModel model) {
@@ -40,4 +46,6 @@ public class ProductListingController implements Initializable {
     public void allPricesDown(ActionEvent actionEvent) {
         this.productsModel.allPriceDown();
     }
+
+    public void sumProducts(ActionEvent actionEvent) { this.productsModel.sum(); }
 }
